@@ -21,49 +21,76 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cust_id")
 	private int custId;
-	
-	@Column(name = "first_Name")
-	@NotBlank(message = "First Name is required")
-	@Size(min = 2, max = 10, message = "Please ensure the name is within 2-10 range")
-	private String firstName;
 	public int getCustId() {
 		return custId;
 	}
 	public void setCustId(int custId) {
 		this.custId = custId;
 	}
-	public String getFirstName() {
-		return firstName;
+	@Column(name = "User_Id")
+	@NotBlank(message = "Userid is required")
+	@Size(min = 4, max = 10, message = "Please ensure UserId is within 4-10 range")
+	private String userId;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	@Column(name = "last_Name")
-	@NotBlank(message = "Last Name is required")
-	private String lastName;
+
+	@Column(name = "password")
+	@NotBlank(message = "password is required")
+	@Size(min = 4, max = 10, message = "Please ensure Password is within 4-10 range")
+	private String password;
 	
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 	@Column(name = "cust_age")
 	@NotNull(message = "Age is required")
 	@Max(100)
 	@Min(18)
 	private int age;
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	@Column(name = "first_name")
+	@NotBlank(message = "First Name is required")
+	@Size(min = 3, max = 10, message = "Please ensure the First Name is within 3-10 range")
+	private String firstName;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	@Column(name = "last_name")
+	@NotBlank(message = "Last Name is required")
+	@Size(min = 3, max = 10, message = "Please ensure the Last name is within 3-10 range")
+	private String lastName;
+	
+	public String getLastName() {
+		return firstName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "Customer [custId=" + custId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
+		return "Customer [custId=" + custId + ", UserId=" + userId + ", password=" + password +", FirstName=" + firstName +",lastName=" +lastName + ", age=" + age
 				+ "]";
 	}
 

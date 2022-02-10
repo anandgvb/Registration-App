@@ -29,12 +29,23 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Customer> customers = getAllCustomers();
 		
 		for(Customer cust: customers) {
-			if(cust.getFirstName().equalsIgnoreCase(customer.getFirstName()) 
-					&& cust.getLastName().equalsIgnoreCase(customer.getLastName())) {
+			if(cust.getUserId().equalsIgnoreCase(customer.getUserId()) 
+					&& cust.getPassword().equalsIgnoreCase(customer.getPassword())) {
 				return false;
 			}
 		}
 		return true;
+	}
+	public boolean validateCustomerLogin(Customer customer) {
+		List<Customer> customers = getAllCustomers();
+		
+		for(Customer cust: customers) {
+			if(cust.getUserId().equalsIgnoreCase(customer.getUserId()) 
+					&& cust.getPassword().equalsIgnoreCase(customer.getPassword())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

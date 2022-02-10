@@ -28,6 +28,11 @@ public class CustomerController {
 		model.addAttribute("customerObj", new Customer());
 		return "register";
 	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String openLoginForm(Model model) {
+		model.addAttribute("customerloginObj", new Customer());
+		return "login";
+	}
 	@RequestMapping(value = "/submit" , method = RequestMethod.POST)
 	public String submitRegistrationForm(Model model,@Valid @ModelAttribute("customerObj") Customer customer,BindingResult br) {
 		if(br.hasErrors()) {
@@ -39,8 +44,27 @@ public class CustomerController {
 			return "success";
 		}else {
 			model.addAttribute("customerObj", new Customer());
-			model.addAttribute("custError", "User is already registered");
+			model.addAttribute("custError", "User is already registered,please click on login");
 			return "register";
 		}
+	}
+	@RequestMapping(value = "/submitlogin" , method = RequestMethod.POST)
+	public String submitloginForm(Model model,@Valid @ModelAttribute("customerloginObj") Customer customer,BindingResult bdr)
+	{
+	//   if(bdr.hasErrors()) {
+		//	return "login";
+	//	}
+		
+		if(customerService.validateCustomerLogin(customer)) {
+			model.addAttribute("userid",customer.getUserId());
+			return "loginsuccess";
+			
+		}
+		else {
+			  	model.addAttribute("customerloginObj", new Customer());
+				model.addAttribute("custError", "User is not registered, please register before logging-in");
+			return "login";
+		}
+
 	}
 }
